@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getServiceDataMutableLiveData().observe(this, player -> {
             if (player != null) {
-                players.add(player);
-                //  Log.v("LISTA", player.getStats().getP2().getKills().getRank());
+                
 
                 parameters.add(player.getStats().getP2().getKills());
                 parameters.add(player.getStats().getP2().getKpg());
