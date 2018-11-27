@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getParametersDataMutableLiveData().observe(this, arr_params -> {
             if (arr_params != null) {
 
-
+                parameters = arr_params;
 
 
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
-                recyclerView.setAdapter(new MainListAdapter(arr_params));
+                recyclerView.setAdapter(new MainListAdapter(parameters));
 
             }
 
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Vaciamos la lista para que no se carguen los nuevos junto a los viejos.
-                parameters = new ArrayList<>();
+
+                parameters.clear();
                 // Método para obtener los datos y le mandamos los parametros necesarios
                 mainViewModel.getData(sp_platform.getSelectedItem().toString().trim(), etUserForSearch.getText().toString());
                 // Quitamos el texto de la busqueda para no tener que borrarlo cada vez que buscamos un usuario.
