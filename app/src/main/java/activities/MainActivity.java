@@ -45,12 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.btn_search);
         sp_platform = findViewById(R.id.spinner_platform);
 
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Repository.getInstance().getPlayerData(sp_platform.getSelectedItem().toString().trim(),etUserForSearch.getText().toString());
-            }
-        });
+
 
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -72,7 +67,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        mainViewModel.getData();
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parameters = new ArrayList<>();
+                mainViewModel.getData(sp_platform.getSelectedItem().toString().trim(),etUserForSearch.getText().toString());
+            }
+        });
+
 
 
     }

@@ -28,8 +28,8 @@ public class MainViewModel extends AndroidViewModel {
         return serviceDataMutableLiveData;
     }
 
-    public void getData() {
-        repository.getPlayerData("pc","ninja")
+    public void getData(String platform,String user) {
+        repository.getPlayerData(platform,user)
                 .subscribeOn(Schedulers.io())
                 .subscribe(response -> serviceDataMutableLiveData.postValue(response),
                            error -> Log.d("SERVICE RESPONSE", error.getLocalizedMessage()));

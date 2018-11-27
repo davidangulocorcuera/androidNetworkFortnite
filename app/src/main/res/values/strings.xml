@@ -2,8 +2,8 @@
     <string name="app_name">NetworkRequestAndroid</string>
     <string name="str_search">Search</string>
     <string-array name="platform">
-        <item>PC</item>
-        <item>PS4</item>
-        <item>XBOX</item>
+        <item>pc</item>
+        <item>psn</item>
+        <item>xbl</item>
     </string-array>
 </resources>
