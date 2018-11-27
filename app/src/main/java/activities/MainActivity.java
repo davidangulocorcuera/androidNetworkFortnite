@@ -25,7 +25,6 @@ import viewmodel.MainViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ArrayList<Player> players;
     private ArrayList<Parameters> parameters;
     private FloatingActionButton btnSearch;
     private EditText etUserForSearch;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView_main);
-        players = new ArrayList<>();
         parameters = new ArrayList<>();
         etUserForSearch = findViewById(R.id.editText_search);
         btnSearch = findViewById(R.id.btn_search);
@@ -45,22 +43,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getServiceDataMutableLiveData().observe(this, player -> {
-            if (player != null) {
+        mainViewModel.getParametersDataMutableLiveData().observe(this, arr_params -> {
+            if (arr_params != null) {
 
 
-                parameters.add(player.getStats().getP2().getKills());
-                parameters.add(player.getStats().getP2().getKpg());
-                parameters.add(player.getStats().getP2().getScore());
-                parameters.add(player.getStats().getP2().getWinRatio());
+
 
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
-                recyclerView.setAdapter(new MainListAdapter(parameters));
+                recyclerView.setAdapter(new MainListAdapter(arr_params));
 
             }
 
 
         });
+        mainViewModel.getData("psn","ninja");
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
