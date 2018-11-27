@@ -38,7 +38,8 @@ public class MainViewModel extends AndroidViewModel {
         return playerDataMutableLiveData;
     }
 
-
+    // response nos devuelve un objeto player , guardamos sus parametros en una lista para despues pasarla al mainactivity.
+    // en el caso de que el usuario no exista aparecerá un mensaje en la consola, pero la app no dejará de responder.
     public void getData(String platform, String user) {
         repository.getPlayerData(platform, user)
                 .subscribeOn(Schedulers.io())

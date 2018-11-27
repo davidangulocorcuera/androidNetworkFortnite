@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
             if (arr_params != null) {
 
                 parameters = arr_params;
-
-
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
                 recyclerView.setAdapter(new MainListAdapter(parameters));
 
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // limpiamos la lista para que la nueva búsqueda se superponga.
                 parameters.clear();
                 // Método para obtener los datos y le mandamos los parametros necesarios
                 mainViewModel.getData(sp_platform.getSelectedItem().toString().trim(), etUserForSearch.getText().toString());

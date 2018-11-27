@@ -45,27 +45,29 @@ public class MainListAdapter extends RecyclerView.Adapter<MainCellViewHolder>  {
 
     @Override
     public void onBindViewHolder(@NonNull MainCellViewHolder mainCellViewHolder, int position) {
+        // Como hay usuarios que no tienen rankin, en el caso de que falte alguna característica esa la ponemos como 404
+        // que es el error de not found.
 
         Parameters item = parameters.get(position);
         if(item.getLabel() != null){
             mainCellViewHolder.tv_cellFirstText.setText(item.getLabel());
         }
         else{
-            mainCellViewHolder.tv_cellFirstText.setText("error");
+            mainCellViewHolder.tv_cellFirstText.setText("error 404");
 
         }
         if(item.getRank()!= null){
             mainCellViewHolder.tv_cellSecondText.setText("Rank: " + item.getRank());
         }
         else{
-            mainCellViewHolder.tv_cellSecondText.setText("error");
+            mainCellViewHolder.tv_cellSecondText.setText("error 404");
 
         }
         if(item.getValue() != null){
             mainCellViewHolder.tv_cellThirdText.setText("accuracy: " + item.getValue());
         }
         else{
-            mainCellViewHolder.tv_cellThirdText.setText("error");
+            mainCellViewHolder.tv_cellThirdText.setText("error 404");
 
         }
 
