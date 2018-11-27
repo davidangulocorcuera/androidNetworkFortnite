@@ -47,10 +47,29 @@ public class MainListAdapter extends RecyclerView.Adapter<MainCellViewHolder>  {
     public void onBindViewHolder(@NonNull MainCellViewHolder mainCellViewHolder, int position) {
 
         Parameters item = parameters.get(position);
+        if(item.getLabel() != null){
+            mainCellViewHolder.tv_cellFirstText.setText(item.getLabel());
+        }
+        else{
+            mainCellViewHolder.tv_cellFirstText.setText("error");
 
-                mainCellViewHolder.tv_cellFirstText.setText(item.getLabel());
-                mainCellViewHolder.tv_cellSecondText.setText(item.getRank());
-                mainCellViewHolder.tv_cellThirdText.setText(item.getValue());
+        }
+        if(item.getRank()!= null){
+            mainCellViewHolder.tv_cellSecondText.setText("Rank: " + item.getRank());
+        }
+        else{
+            mainCellViewHolder.tv_cellSecondText.setText("error");
+
+        }
+        if(item.getValue() != null){
+            mainCellViewHolder.tv_cellThirdText.setText("accuracy: " + item.getValue());
+        }
+        else{
+            mainCellViewHolder.tv_cellThirdText.setText("error");
+
+        }
+
+
 
     }
 

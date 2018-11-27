@@ -24,14 +24,12 @@ import viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-   private RecyclerView recyclerView;
-   private ArrayList<Player> players;
-   private ArrayList<Parameters> parameters;
-   private  FloatingActionButton btnSearch;
-   private EditText etUserForSearch;
-   private String player;
-   private String platform;
-   private Spinner sp_platform;
+    private RecyclerView recyclerView;
+    private ArrayList<Player> players;
+    private ArrayList<Parameters> parameters;
+    private FloatingActionButton btnSearch;
+    private EditText etUserForSearch;
+    private Spinner sp_platform;
 
 
     @Override
@@ -46,35 +44,31 @@ public class MainActivity extends AppCompatActivity {
         sp_platform = findViewById(R.id.spinner_platform);
 
 
-
-
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getServiceDataMutableLiveData().observe(this, player -> {
             if (player != null) {
                 players.add(player);
-                  Log.v("LISTA", player.getStats().getP2().getKills().getRank());
+                //  Log.v("LISTA", player.getStats().getP2().getKills().getRank());
 
-                  parameters.add(player.getStats().getP2().getKills());
-                  parameters.add(player.getStats().getP2().getKpg());
-                  parameters.add(player.getStats().getP2().getScore());
-                  parameters.add(player.getStats().getP2().getWinRatio());
-
+                parameters.add(player.getStats().getP2().getKills());
+                parameters.add(player.getStats().getP2().getKpg());
+                parameters.add(player.getStats().getP2().getScore());
+                parameters.add(player.getStats().getP2().getWinRatio());
 
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
                 recyclerView.setAdapter(new MainListAdapter(parameters));
 
-
-
             }
+
+
         });
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 parameters = new ArrayList<>();
-                mainViewModel.getData(sp_platform.getSelectedItem().toString().trim(),etUserForSearch.getText().toString());
+                mainViewModel.getData(sp_platform.getSelectedItem().toString().trim(), etUserForSearch.getText().toString());
             }
         });
-
 
 
     }
