@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getServiceDataMutableLiveData().observe(this, player -> {
             if (player != null) {
-                
+
 
                 parameters.add(player.getStats().getP2().getKills());
                 parameters.add(player.getStats().getP2().getKpg());
@@ -64,8 +64,12 @@ public class MainActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Vaciamos la lista para que no se carguen los nuevos junto a los viejos.
                 parameters = new ArrayList<>();
+                // Método para obtener los datos y le mandamos los parametros necesarios
                 mainViewModel.getData(sp_platform.getSelectedItem().toString().trim(), etUserForSearch.getText().toString());
+                // Quitamos el texto de la busqueda para no tener que borrarlo cada vez que buscamos un usuario.
+                etUserForSearch.setText("");
             }
         });
 
